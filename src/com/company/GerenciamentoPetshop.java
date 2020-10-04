@@ -22,13 +22,17 @@ public class GerenciamentoPetshop {
     public Petshop ProcurarPetshop() {
         Petshop MelhorPetshop = petshops.get(0);
         MelhorPetshop.setOrcamento(diaDeSemana, cachorrosGrandes, cachorrosPequenos);
-        for (Petshop petshop : petshops) {
-            petshop.setOrcamento(diaDeSemana, cachorrosGrandes, cachorrosPequenos);
-            if (MelhorPetshop.getOrcamento() > petshop.getOrcamento()) {
-                MelhorPetshop = petshop;
-            } else if (MelhorPetshop.getOrcamento()  == petshop.getOrcamento() && petshop.getDistancia() < MelhorPetshop.getDistancia()) {
-                MelhorPetshop = petshop;
+        try {
+            for (Petshop petshop : petshops) {
+                petshop.setOrcamento(diaDeSemana, cachorrosGrandes, cachorrosPequenos);
+                if (MelhorPetshop.getOrcamento() > petshop.getOrcamento()) {
+                    MelhorPetshop = petshop;
+                } else if (MelhorPetshop.getOrcamento() == petshop.getOrcamento() && petshop.getDistancia() < MelhorPetshop.getDistancia()) {
+                    MelhorPetshop = petshop;
+                }
             }
+        } catch (Exception e) {
+            Log.Novo("Erro ao procurar melhor Pet Shop " + e.toString());
         }
         return MelhorPetshop;
     }
@@ -38,12 +42,17 @@ public class GerenciamentoPetshop {
     }
 
     public void setDiaDeSemana(Date data) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-        if ((cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) || (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)) {
-            this.diaDeSemana = false;
-        } else {
-            this.diaDeSemana = true;
+        try {
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(data);
+            if ((cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) || (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)) {
+                this.diaDeSemana = false;
+            } else {
+                this.diaDeSemana = true;
+            }
+        }catch (Exception e) {
+            Log.Novo("Erro ao verificar se o dia é util: " + e.toString());
         }
     }
 
@@ -70,7 +79,7 @@ public class GerenciamentoPetshop {
         precos.add(new Preco(false, 48.0, "Grande"));
         precos.add(new Preco(true, 20.0, "Pequeno"));
         precos.add(new Preco(false, 24.0, "Pequeno"));
-        petshops.add(new Petshop("Meu Canino Feliz",2,precos));
+        petshops.add(new Petshop("Meu Canino Feliz", 2, precos));
 
         //Vai Rex
         precos = new ArrayList<Preco>();
@@ -78,7 +87,7 @@ public class GerenciamentoPetshop {
         precos.add(new Preco(false, 55.0, "Grande"));
         precos.add(new Preco(true, 15.0, "Pequeno"));
         precos.add(new Preco(false, 20.0, "Pequeno"));
-        petshops.add(new Petshop("Vai Rex",1.7,precos));
+        petshops.add(new Petshop("Vai Rex", 1.7, precos));
 
         //ChowChawgas
         precos = new ArrayList<Preco>();
@@ -86,6 +95,6 @@ public class GerenciamentoPetshop {
         precos.add(new Preco(false, 45.0, "Grande"));
         precos.add(new Preco(true, 30.0, "Pequeno"));
         precos.add(new Preco(false, 30.0, "Pequeno"));
-        petshops.add(new Petshop("Vai Rex",0.8,precos));
+        petshops.add(new Petshop("Vai Rex", 0.8, precos));
     }
 }

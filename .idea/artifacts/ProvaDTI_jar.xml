@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProvaDTI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProvaDTI_jar</output-path>
+    <root id="archive" name="ProvaDTI.jar">
+      <element id="module-output" name="ProvaDTI" />
+    </root>
+  </artifact>
+</component>

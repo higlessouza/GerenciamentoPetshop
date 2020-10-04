@@ -17,14 +17,20 @@ public class Petshop {
 
     public double setOrcamento(boolean diaDeSemana, int cachorrosGrandes, int cachorrosPequenos) {
         double precoTotal = 0;
+       try {
         for (Preco preco : precos) {
-            if (preco.getTamanhoCachorro().equals("Grande")) {
-                precoTotal += cachorrosGrandes * preco.getPreco();
-            } else if (preco.getTamanhoCachorro().equals("Pequeno")) {
-                precoTotal += cachorrosPequenos * preco.getPreco();
+            if (diaDeSemana == preco.getDiaDeSemana()) {
+                if (preco.getTamanhoCachorro().equals("Grande")) {
+                    precoTotal += cachorrosGrandes * preco.getPreco();
+                } else if (preco.getTamanhoCachorro().equals("Pequeno")) {
+                    precoTotal += cachorrosPequenos * preco.getPreco();
+                }
             }
         }
         this.orcamento = precoTotal;
+       }catch (Exception e){
+           Log.Novo("Erro ao calcular orçamento. "+e.toString());
+       }
         return precoTotal;
     }
 
