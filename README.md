@@ -14,7 +14,7 @@ Esta classe também contempla o método Preencher dados. Este método é de suma
 ### Petshop
 Contém informações básicas do pet shop, como nome e distância. Além disso, contém uma lista de preços de banhos para os doguinhos.
 
-### preço
+### Preco
 Por cada pet shop poder conter até quatro preços (Pequeno,Grande, Dia de semana e final de semana), foi criada uma classe para otimizar este ponto. Caso futuramente fosse necessário implementar outra condição, como por exemplo cachorros de médio porte, será bem mais fácil implementar, além de facilitar a manutenção do código.
 
 ## Premissas 
