@@ -2,7 +2,7 @@
 
 ## Solução
 Para representar a solução, foi criado um diagrama de classes, como pode ser visto na imagem abaixo.
- ![Logo do R](https://i.ibb.co/yFmBv8G/prova-Dti-Diagrama.png)
+ ![Diagrama](https://i.ibb.co/yFmBv8G/prova-Dti-Diagrama.png)
  
  O programa conta com três classes principais, GerenciamentoPetshop,Petshop e Preco.
  
@@ -25,12 +25,21 @@ Seguindo esta linha, o valor do banho nos finais de semana do do pet shop Meu Ca
 
 
 ## Instruções para executar o sistema
+A solução foi desenvolvida na versão 1.8 do java.
+
 O executavel do programa esta em "ProvaDTI\out\artifacts\ProvaDTI_jar". 
 
 
 É possível executá lo passando os parâmetros
-<data MM/DD/AAAA> <quantidade de cães pequenos> <quantidade cães grandes>
-	`Java -jar ProvaDTI.jar 10/04/2020 3 5`
+<data DD/MM/AAAA> <quantidade de cães pequenos> <quantidade cães grandes>
+
+`Java -jar ProvaDTI.jar 04/10/2020 3 5`
 
 Também é possível executar o programa sem inserir os parâmetros inicialmente. Neste caso, será solicitado inserir as informações através do console.
-	`Java -jar ProvaDTI.jar`
+
+`Java -jar ProvaDTI.jar`
+
+
+Exemplo de execução: 
+
+ ![Ex](https://i.ibb.co/ZTWFr0b/ex.png)
