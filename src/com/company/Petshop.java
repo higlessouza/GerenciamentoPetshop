@@ -15,22 +15,23 @@ public class Petshop {
         setPrecos(precos);
     }
 
+    //Calcula o orçamento de acordo com os parametros inseridos pelo usuário
     public double setOrcamento(boolean diaDeSemana, int cachorrosGrandes, int cachorrosPequenos) {
         double precoTotal = 0;
-       try {
-        for (Preco preco : precos) {
-            if (diaDeSemana == preco.getDiaDeSemana()) {
-                if (preco.getTamanhoCachorro().equals("Grande")) {
-                    precoTotal += cachorrosGrandes * preco.getPreco();
-                } else if (preco.getTamanhoCachorro().equals("Pequeno")) {
-                    precoTotal += cachorrosPequenos * preco.getPreco();
+        try {
+            for (Preco preco : precos) {
+                if (diaDeSemana == preco.getDiaDeSemana()) {
+                    if (preco.getTamanhoCachorro().equals("Grande")) {
+                        precoTotal += cachorrosGrandes * preco.getPreco();
+                    } else if (preco.getTamanhoCachorro().equals("Pequeno")) {
+                        precoTotal += cachorrosPequenos * preco.getPreco();
+                    }
                 }
             }
+            this.orcamento = precoTotal;
+        } catch (Exception e) {
+            Log.Novo("Erro ao calcular orçamento. " + e.toString());
         }
-        this.orcamento = precoTotal;
-       }catch (Exception e){
-           Log.Novo("Erro ao calcular orçamento. "+e.toString());
-       }
         return precoTotal;
     }
 
@@ -38,6 +39,7 @@ public class Petshop {
         this.precos = precos;
     }
 
+    //Retorna o orçamento formatado para visualização do usuário
     public String getOrcamentoFormatado() {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         return formatter.format(orcamento);

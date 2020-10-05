@@ -1,24 +1,30 @@
 package com.company;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 
 public class Main {
     static Date inputData;
     static int cachorrosPequenos, cachorrosGrandes;
+    static DateFormat formataData;
 
     public static void IniciarParamentros() {
         inputData = new Date();
         cachorrosPequenos = 0;
         cachorrosGrandes = 0;
+        formataData = DateFormat.getDateInstance();
+        formataData.setLenient(false);
     }
 
+    //Menu para interação com o usuário
+    //Caso exista algum erro nos paramentros inseridos pelo usuário, este metodo é chamado para o usuário inserir as informações novamente
     public static void Menu() {
         System.out.println(" ");
-        System.out.println("Digite a data desejada no formato MM/DD/AAAA:");
+        System.out.println("Digite a data desejada no formato DD/MM/AAAA:");
         try {
-            inputData = new Date(System.console().readLine());
+            inputData = formataData.parse(System.console().readLine());
         } catch (Exception e) {
             Log.Novo("Ocorreu um erro ao tentar converter a data, por favor, tente novamente!");
             Menu();
@@ -48,7 +54,7 @@ public class Main {
 
         if (args.length == 3) {
             try {
-                inputData = new Date(args[0]);
+                inputData = formataData.parse(args[0]);
                 cachorrosPequenos = Integer.parseInt(args[1]);
                 cachorrosGrandes = Integer.parseInt(args[2]);
             } catch (NumberFormatException e) {
@@ -67,9 +73,13 @@ public class Main {
             Log.Novo("Não foram encontrados parâmetros de entrada, por favor, insira as informações solicitadas abaixo.");
             Menu();
         }
+        if (cachorrosPequenos + cachorrosGrandes == 0) {
+            Log.Novo("A quantidade total de cães selecionados foi 0. Por favor, tente novamente..");
+            Menu();
+        }
         GerenciamentoPetshop gerenciamentoPetshop = new GerenciamentoPetshop(inputData, cachorrosPequenos, cachorrosGrandes);
         Petshop petshop = gerenciamentoPetshop.ProcurarPetshop();
-        System.out.println("O canil mais adequado é o " + petshop.getNome() + " com o preço de " + petshop.getOrcamentoFormatado());
+        System.out.println("O canil mais adequado na data " + formataData.format(inputData) + " é o " + petshop.getNome() + " com o preço de " + petshop.getOrcamentoFormatado() + ".");
     }
 }
 

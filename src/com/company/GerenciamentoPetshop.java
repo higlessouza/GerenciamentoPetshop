@@ -19,12 +19,16 @@ public class GerenciamentoPetshop {
     private boolean diaDeSemana;
     private int cachorrosPequenos, cachorrosGrandes;
 
+    // Raliza um looping nos petshops e define o melhor de acordo com preço e distância
     public Petshop ProcurarPetshop() {
+        //Define o primeiro petshop da lista como o melhor petshop e calcula o orçamento.
         Petshop MelhorPetshop = petshops.get(0);
         MelhorPetshop.setOrcamento(diaDeSemana, cachorrosGrandes, cachorrosPequenos);
         try {
             for (Petshop petshop : petshops) {
+                //Calcula o orçamento do petshop atual no looping
                 petshop.setOrcamento(diaDeSemana, cachorrosGrandes, cachorrosPequenos);
+                //se o petshop atual do looping for mais barato, ou tiver o mesmo preço e for mais perto, define ele como o "melhorPetshop"
                 if (MelhorPetshop.getOrcamento() > petshop.getOrcamento()) {
                     MelhorPetshop = petshop;
                 } else if (MelhorPetshop.getOrcamento() == petshop.getOrcamento() && petshop.getDistancia() < MelhorPetshop.getDistancia()) {
@@ -41,6 +45,7 @@ public class GerenciamentoPetshop {
         return diaDeSemana;
     }
 
+    //Recebe uma data por parametro e define se é dia de semana ou não
     public void setDiaDeSemana(Date data) {
         try {
 
@@ -51,7 +56,7 @@ public class GerenciamentoPetshop {
             } else {
                 this.diaDeSemana = true;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.Novo("Erro ao verificar se o dia é util: " + e.toString());
         }
     }
@@ -72,6 +77,7 @@ public class GerenciamentoPetshop {
         this.cachorrosGrandes = cachorrosGrandes;
     }
 
+    // Como não existe um banco de dados tradicional, este método preenche as informações dos pet shops em tempo de execução.
     public void PreencherDados() {
         //Meu Canino Feliz
         List<Preco> precos = new ArrayList<Preco>();
@@ -95,6 +101,6 @@ public class GerenciamentoPetshop {
         precos.add(new Preco(false, 45.0, "Grande"));
         precos.add(new Preco(true, 30.0, "Pequeno"));
         precos.add(new Preco(false, 30.0, "Pequeno"));
-        petshops.add(new Petshop("Vai Rex", 0.8, precos));
+        petshops.add(new Petshop("ChowChawgas", 0.8, precos));
     }
 }
