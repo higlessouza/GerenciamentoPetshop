@@ -25,7 +25,7 @@ Seguindo esta linha, o valor do banho nos finais de semana do do pet shop Meu Ca
 
 
 ## Instruções para executar o sistema
-A solução foi desenvolvida na versão 1.8 do java.
+A solução foi desenvolvida na versão 8 do java (1.8.0_261).
 
 O executavel do programa esta em "ProvaDTI\out\artifacts\ProvaDTI_jar". 
 
